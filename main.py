@@ -11,6 +11,7 @@ def save_uploaded_file(uploaded_file):
             f.write(uploaded_file.getbuffer())
         return 1
     except:
+        st.text("Pog")
         return 0
 
 
