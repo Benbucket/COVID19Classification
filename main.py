@@ -6,13 +6,14 @@ from PIL import Image
 st.title('COVID-19 Detector')
 
 def save_uploaded_file(uploaded_file):
-    try:
-        with open(os.path.join('yolov5/images',uploaded_file.name),'wb') as f:
-            f.write(uploaded_file.getbuffer())
-        return 1
-    except:
-        st.text("Pog")
-        return 0
+    with open(os.path.join('yolov5/images',uploaded_file.name),'wb') as f:
+        f.write(uploaded_file.getbuffer())
+#     try:
+#         with open(os.path.join('yolov5/images',uploaded_file.name),'wb') as f:
+#             f.write(uploaded_file.getbuffer())
+#         return 1
+#     except:
+#         return 0
 
 
 uploaded_file = st.file_uploader("Upload Image")
