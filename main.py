@@ -17,18 +17,15 @@ path = os.path.abspath(os.getcwd())
 #     except:
 #         return 0
 
-image_path = 'Image.png'
-uploaded_file = st.file_uploader("Upload Image")
-st.image(uploaded_file)
-uploaded_file.save(image_path)
 
+uploaded_file = st.file_uploader("Upload Image")
 # text over upload button "Upload Image"
 if uploaded_file is not None:
     if True:
         # display the uploaded image
         display_image = Image.open(uploaded_file)
         st.image(display_image)
-        prediction = predictor(image_path)
+        prediction = predictor(uploaded_file.name)
         # deleting uploaded saved picture after prediction
 #         os.remove('yolov5/images/'+uploaded_file.name)
 
