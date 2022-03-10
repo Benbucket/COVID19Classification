@@ -1,33 +1,31 @@
-from helper import *
 import streamlit as st
+import torch
+import time
 import os
-import shutil
 from PIL import Image
 st.title('COVID-19 Detector')
 
-path = os.path.abspath(os.getcwd())
-
-# def save_uploaded_file(uploaded_file):
-#     with open(os.path.join(path,'/yolov5/images',uploaded_file.name),'wb') as f:
-#         f.write(uploaded_file.getbuffer())
-#     try:
-#         with open(os.path.abspath.join('yolov5/images',uploaded_file.name),'wb') as f:
-#             f.write(uploaded_file.getbuffer())
-#         return 1
-#     except:
-#         return 0
-
-
+# path = os.path.abspath(os.getcwd())
 uploaded_file = st.file_uploader("Upload Image")
-# text over upload button "Upload Image"
-if uploaded_file is not None:
-    if True:
-        # display the uploaded image
-        display_image = Image.open(uploaded_file)
-        st.image(display_image)
-        prediction = predictor(uploaded_file.name)
-        # deleting uploaded saved picture after prediction
-#         os.remove('yolov5/images/'+uploaded_file.name)
 
-        st.image(prediction)
-        shutil.rmtree('yolov5/runs/detect/exp')
+
+def predictor(img):
+    # Model
+    model = torch.hub.load('ultralytics/yolov5', 'custom', path='best.pt')
+    # Inference
+    results = model(img)
+    results.save('.')
+
+
+if uploaded_file is not None:
+    # display the uploaded image
+    display_image = Image.open(uploaded_file)
+    display_image.save(uploaded_file.name)
+    st.image(display_image)
+    predictor(uploaded_file.name)
+    st.image(uploaded_file.name)
+    time.sleep(2)
+    os.remove(uploaded_file.name)
+    os.remove(f'{"".join(uploaded_file.name.split(".")[:-1])}.jpg')
+
+
