@@ -27,6 +27,6 @@ if uploaded_file is not None:
     st.image(uploaded_file.name)
     time.sleep(2)
     os.remove(uploaded_file.name)
-    os.remove(f'{"".join(uploaded_file.name.split(".")[:-1])}.jpg')
+#     os.remove(f'{"".join(uploaded_file.name.split(".")[:-1])}.jpg')
 
 
