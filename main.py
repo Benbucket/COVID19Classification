@@ -21,7 +21,7 @@ path = os.path.abspath(os.getcwd())
 uploaded_file = st.file_uploader("Upload Image")
 # text over upload button "Upload Image"
 if uploaded_file is not None:
-    if TRUE:
+    if True:
         # display the uploaded image
         display_image = Image.open(uploaded_file)
         st.image(display_image)
