@@ -5,13 +5,14 @@ import shutil
 from PIL import Image
 st.title('COVID-19 Detector')
 
+path = os.path.abspath(os.getcwd())
+st.caption(f'The path is: {path}')
+
 def save_uploaded_file(uploaded_file):
-    with open(os.path.join('yolov5/images',uploaded_file.name),'wb') as f:
+    with open(os.path.abspath(os.path.join('yolov5/images',uploaded_file.name),'wb')) as f:
         f.write(uploaded_file.getbuffer())
-        path = os.path.join('yolov5/images',uploaded_file.name)
-        st.caption(f'The path is: {path}')
 #     try:
-#         with open(os.path.join('yolov5/images',uploaded_file.name),'wb') as f:
+#         with open(os.path.abspath.join('yolov5/images',uploaded_file.name),'wb') as f:
 #             f.write(uploaded_file.getbuffer())
 #         return 1
 #     except:
