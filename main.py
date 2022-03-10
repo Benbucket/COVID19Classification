@@ -8,6 +8,8 @@ st.title('COVID-19 Detector')
 def save_uploaded_file(uploaded_file):
     with open(os.path.join('yolov5/images',uploaded_file.name),'wb') as f:
         f.write(uploaded_file.getbuffer())
+        path = os.path.join('yolov5/images',uploaded_file.name)
+        st.caption(f'The path is: {path}')
 #     try:
 #         with open(os.path.join('yolov5/images',uploaded_file.name),'wb') as f:
 #             f.write(uploaded_file.getbuffer())
