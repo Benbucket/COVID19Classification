@@ -27,7 +27,7 @@ if uploaded_file is not None:
         st.image(display_image)
         prediction = predictor(uploaded_file.name)
         # deleting uploaded saved picture after prediction
-        os.remove('yolov5/images/'+uploaded_file.name)
+#         os.remove('yolov5/images/'+uploaded_file.name)
 
         st.image(prediction)
         shutil.rmtree('yolov5/runs/detect/exp')
