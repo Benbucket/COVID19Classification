@@ -6,7 +6,9 @@ from PIL import Image
 st.title('COVID-19 Detector')
 
 path = os.path.abspath(os.getcwd())
+path2 = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 st.caption(f'The path is: {path}')
+st.caption(f'The 2nd path is: {path2}')
 
 def save_uploaded_file(uploaded_file):
     with open(os.path.abspath(os.path.join('yolov5/images',uploaded_file.name),'wb')) as f:
