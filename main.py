@@ -17,13 +17,24 @@ def predictor(img):
     results.save('.')
 
 
+
 if uploaded_file is not None:
+    col1, col2 = st.columns(2)
+
+
+
     # display the uploaded image
     display_image = Image.open(uploaded_file)
     display_image.save(uploaded_file.name)
-    st.image(display_image)
+    with col1:
+        st.header("Input Image")
+        st.image(display_image)
+    # st.image(display_image)
     predictor(uploaded_file.name)
-    st.image(uploaded_file.name)
+    with col2:
+        st.header("Output Image")
+        st.image(uploaded_file.name)
+    # st.image(uploaded_file.name)
     time.sleep(2)
     os.remove(uploaded_file.name)
     os.remove(f'{"".join(uploaded_file.name.split(".")[:-1])}.jpg')
