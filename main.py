@@ -17,10 +17,6 @@ def predictor(img):
     results = model(img)
     results.save('.')
 
-    with col1:
-        st.header("Input Image")
-    with col2:
-        st.header("Output Image")
 
 if uploaded_file is not None:
     col1, col2 = st.columns(2)
