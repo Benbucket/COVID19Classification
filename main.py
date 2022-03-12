@@ -6,7 +6,7 @@ from PIL import Image
 st.title('COVID-19 Detector')
 
 # path = os.path.abspath(os.getcwd())
-uploaded_file = st.file_uploader("Upload Image")
+uploaded_file = st.file_uploader("Upload Image", type='jpg')
 
 
 def predictor(img):
@@ -35,7 +35,6 @@ if uploaded_file is not None:
         with col2:
             st.header("Output Image")
             st.image(uploaded_file.name)
-            st.success('Success!')
     except:
         e = RuntimeError('RuntimeError')
         st.exception(e)
@@ -43,5 +42,4 @@ if uploaded_file is not None:
     time.sleep(2)
     os.remove(uploaded_file.name)
 #     os.remove(f'{"".join(uploaded_file.name.split(".")[:-1])}.jpg')
-
 
