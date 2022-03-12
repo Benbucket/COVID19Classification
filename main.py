@@ -30,11 +30,16 @@ if uploaded_file is not None:
         st.header("Input Image")
         st.image(display_image)
     # st.image(display_image)
-    predictor(uploaded_file.name)
-    with col2:
-        st.header("Output Image")
-        st.image(uploaded_file.name)
-    # st.image(uploaded_file.name)
+    try:
+        predictor(uploaded_file.name)
+        with col2:
+            st.header("Output Image")
+            st.image(uploaded_file.name)
+            st.success('Success!')
+    except:
+        e = RuntimeError('RuntimeError')
+        st.exception(e)
+
     time.sleep(2)
     os.remove(uploaded_file.name)
 #     os.remove(f'{"".join(uploaded_file.name.split(".")[:-1])}.jpg')
