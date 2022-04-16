@@ -5,23 +5,22 @@ import os
 from PIL import Image
 st.title('COVID-19 Detector')
 
-# path = os.path.abspath(os.getcwd())
 uploaded_file = st.file_uploader("Upload Image", type='jpg')
 
 
 def predictor(img):
     # Model
     torch.hub._validate_not_a_forked_repo=lambda a,b,c: True
-    model = torch.hub.load('ultralytics/yolov5', 'custom', path='best.pt')
+    model = torch.hub.load('ultralytics/yolov5', 'custom', path='bestModel.pt')
     # Inference
     results = model(img)
+    results.pandas().xyxy[0]
     results.save('.')
+
 
 
 if uploaded_file is not None:
     col1, col2 = st.columns(2)
-
-
 
     # display the uploaded image
     display_image = Image.open(uploaded_file)
@@ -29,7 +28,6 @@ if uploaded_file is not None:
     with col1:
         st.header("Input Image")
         st.image(display_image)
-    # st.image(display_image)
     try:
         predictor(uploaded_file.name)
         with col2:
@@ -41,5 +39,4 @@ if uploaded_file is not None:
 
     time.sleep(2)
     os.remove(uploaded_file.name)
-#     os.remove(f'{"".join(uploaded_file.name.split(".")[:-1])}.jpg')
 
