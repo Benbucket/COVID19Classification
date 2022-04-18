@@ -32,7 +32,7 @@ if uploaded_file is not None:
         predictor(uploaded_file.name)
         with col2:
             st.header("Output Image")
-            st.image(uploaded_file.name)
+            st.image("runs/detect/exp/" + uploaded_file.name)
     except:
         e = RuntimeError('RuntimeError')
         st.exception(e)
